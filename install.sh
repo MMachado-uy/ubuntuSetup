@@ -20,20 +20,20 @@ cp assets/.bashrc ~/
 
 sudo apt-get install -y apt-transport-https curl wget
 
-wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
+wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key -y add -
 echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
 curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
 sudo install -o root -g root -m 644 packages.microsoft.gpg /usr/share/keyrings/
 sudo sh -c 'echo "deb [arch=amd64 signed-by=/usr/share/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
-sudo add-apt-repository ppa:git-core/ppa
+sudo add-apt-repository -y ppa:git-core/ppa
 echo "deb https://download.virtualbox.org/virtualbox/debian bionic contrib" | sudo tee /etc/apt/sources.list
-wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
-sudo add-apt-repository ppa:otto-kesselgulasch/gimp
-sudo add-apt-repository ppa:peek-developers/stable
-sudo add-apt-repository ppa:linuxuprising/shutter
-sudo add-apt-repository 'deb https://deb.opera.com/opera-stable/ stable non-free'
-wget -qO- https://deb.opera.com/archive.key | sudo apt-key add -
-curl -sS https://download.spotify.com/debian/pubkey.gpg | sudo apt-key add -
+wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key -y add -
+sudo add-apt-repository -y ppa:otto-kesselgulasch/gimp
+sudo add-apt-repository -y ppa:peek-developers/stable
+sudo add-apt-repository -y ppa:linuxuprising/shutter
+sudo add-apt-repository -y 'deb https://deb.opera.com/opera-stable/ stable non-free'
+wget -qO- https://deb.opera.com/archive.key | sudo apt-key -y add -
+curl -sS https://download.spotify.com/debian/pubkey.gpg | sudo apt-key -y add -
 echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
 
 sudo apt update
