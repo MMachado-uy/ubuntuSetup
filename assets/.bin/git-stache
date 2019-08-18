@@ -1,0 +1,33 @@
+#!/bin/bash
+# Add the location of this file to your path and then simply call 
+# git stache instead of your regular and dull git stash. Batteries not included.
+
+_sleep() { 
+    sleep 0.1 
+}
+
+if [ -d .git ]; then
+    _sleep && echo ''
+    _sleep && echo '                   ~~~~       ~~~~'
+    _sleep && echo '                 ~~~~~~~~   ~~~~~~~~'
+    _sleep && echo '                ~~~~~~~~~~ ~~~~~~~~~~'
+    _sleep && echo '               ~~~~~~~~~~~~~~~~~~~~~~~'
+    _sleep && echo '              ~~~~~~~~~~~~~~~~~~~~~~~~~'
+    _sleep && echo '             ~~~~~~~~~~~~~~~~~~~~~~~~~~~'
+    _sleep && echo '            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
+    _sleep && echo '   ~       ~~~~~~~~~~~~~~~ ~~~~~~~~~~~~~~~       ~'
+    _sleep && echo '  ~~      ~~~~~~~~~~~~~~     ~~~~~~~~~~~~~~      ~~'
+    _sleep && echo '  ~~~ ~~~~~~~~~~~~~~~~         ~~~~~~~~~~~~~~~~ ~~~'
+    _sleep && echo '  ~~~~~~~~~~~~~~~~~               ~~~~~~~~~~~~~~~~~'
+    _sleep && echo '   ~~~~~~~~~~~~~                     ~~~~~~~~~~~~~'
+    _sleep && echo '    ~~~~~~~~~~                         ~~~~~~~~~'
+    _sleep && echo '       ~~~                               ~~~'
+    _sleep && echo ''
+
+    git stash $@
+
+    _sleep
+
+else
+    echo "Sorry, I can't find any repos to stache here"
+fi;

@@ -1,0 +1,15 @@
+[Desktop Entry]
+Version=7.5
+Name=Postman
+Comment=The Only Complete API Development Environment
+TryExec=postman
+Exec=postman -- %u
+Icon=~/Postman/app/resources/app/assets/icon.png
+Terminal=false
+StartupWMClass=Postman
+Type=Application
+Categories=Network;Development;Qt;
+MimeType=x-scheme-handler;
+Keywords=postman;api;development;monitoring;
+X-GNOME-UsesNotifications=true
+X-Desktop-File-Install-Version=0.23

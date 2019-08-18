@@ -1,0 +1,6 @@
+#!/bin/bash
+printf "Hola"
+read input
+echo "Exitcode was '$input'"
+
+exit $?

@@ -1,0 +1,114 @@
+#!/bin/bash
+# Installation:
+#     Linux:
+#         > Save it in a PATH folder
+#         > Give execution permission to this file
+#         > Run from the terminal as prune-repo [options]
+#     Windows:
+#         > Save it in a PATH folder
+#         > Rename to git-prune-repo
+#         > Run from the terminal as git prune-repo [options]
+
+deleteMethod='d'
+branchesToKeep=()
+includeRemotes=0
+remotes=()
+currBranch=$(git symbolic-ref -q HEAD)
+currBranch=${currBranch##refs/heads/}
+currBranch=${currBranch:-HEAD}
+
+keepBranch() {
+  local match="$1"
+  shift
+  for e; do [[ "$e" == "$match" ]] && return 0; done
+  return 1
+}
+
+showHelp() {
+    clear
+    echo "Remove unused git brances, both local and remote"
+    echo
+    echo
+    echo "options:"
+    echo "--help                    Display this page"
+    echo "-k, --keep                Specify the branches to keep"
+    echo "-h, --hard                    Sets the branch delete mode to 'hard':"
+    echo "                              Deletes the branches even if its commits"
+    echo "                              are not merged."
+    echo "                              Defaults to 'soft' mode"
+    echo "-r, --remotes             Specify the remotes in which the branches"
+    echo "                              must be deleted too"
+}
+
+while (( $# > 0 )) ; do
+    case "$1" in
+        --help)
+            showHelp
+            exit 0
+            shift
+            ;;
+        -h|--hard)
+            echo
+            echo
+            echo '****  Warning  ****'
+            echo
+            echo 'Delete mode is: Hard'
+            echo 'Unmerged branches will be deleted too'
+            echo
+            echo
+            sleep 0.3
+            shift
+            deleteMethod='D'
+            ;;
+        -k|--keep)
+            shift
+            while [[ $# > 0 && $1 != -* ]] ; do
+                branchesToKeep+=" "$1
+                shift
+            done
+            ;;
+        -r|--remotes)
+            includeRemotes=1
+            shift
+            while [[ $# > 0 && $1 != -* ]] ; do
+                remotes+=" "$1
+                shift
+            done
+            shift
+            ;;
+        -*)
+            echo 'Unrecognized option:' $1
+            echo 'Exiting'
+            exit 1
+            ;;
+        *)
+            shift
+            ;;
+    esac
+done
+
+for branch in $(git for-each-ref --format='%(refname:short)' refs/heads/) ; do
+    if keepBranch $branch ${branchesToKeep[@]} ; then
+        echo "Skipped" $branch
+    else
+        if [[ $branch == $currBranch ]] ; then
+            echo $branch "is the current branch and will not be deleted"
+            sleep 0.2
+        else
+            git branch -$deleteMethod $branch
+
+            if [[ $includeRemotes > 0 && ${#remotes[@]} > 0 ]] ; then
+                if $branch == 'master' ; then
+                    echo 'Remote master branch will not be deleted'
+                else
+                    for remote in remotes ; do
+                        git push $remote :$branch
+                    done
+                fi
+            fi
+        fi
+    fi
+
+    echo
+    sleep 0.2
+done

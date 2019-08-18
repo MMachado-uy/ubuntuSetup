@@ -1,0 +1,17 @@
+#!/bin/bash
+FILENAME="dump_"$(hostname)"_"$(date "+%Y%m%d")
+
+google-drive-ocamlfuse ~/googledrive
+
+mysqldump -v --user="root" --password="root" --all-databases > ~/$FILENAME.sql
+
+7z a -t7z -m0=lzma -mx=9 -mfb=64 -md=32m -ms=on ~/$FILENAME.7z ~/$FILENAME.sql
+
+mv -v --backup=numbered  ~/$FILENAME.7z ~/googledrive/Dumps/$FILENAME.7z
+
+rm ~/$FILENAME.sql
+
+echo ">>>>>>>>>>>>>>>>> Completed (ran) on" $(date "+%Y%m%d - %T")
+
+exit $?
+
