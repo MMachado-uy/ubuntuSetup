@@ -7,8 +7,8 @@ function installdeb()
     rm $1
 }
 
-sudo apt update
-sudo apt -y upgrade
+sudo apt-get update
+sudo apt-get -y upgrade
 
 mkdir tmp
 cp assets/.bin ~/
@@ -37,8 +37,8 @@ wget -qO- https://deb.opera.com/archive.key | sudo apt-key add -
 curl -sS https://download.spotify.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
 
-sudo apt update
-sudo apt install -y sublime-text code git virtualbox-6.0 vlc gimp gimp-plugin-registry gimp-gmic peek shutter gnome-web-photo opera-stable netbeans filezilla gparted spotify-client arduino filelight slack meld fortunes cowsay
+sudo apt-get update
+sudo apt-get install -y sublime-text code git virtualbox-6.0 vlc gimp gimp-plugin-registry gimp-gmic peek shutter gnome-web-photo opera-stable netbeans filezilla gparted spotify-client arduino filelight slack meld fortunes cowsay
 
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
 
