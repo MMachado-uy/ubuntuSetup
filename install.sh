@@ -32,17 +32,18 @@ wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-
 sudo add-apt-repository -y ppa:otto-kesselgulasch/gimp
 sudo add-apt-repository -y ppa:peek-developers/stable
 sudo add-apt-repository -y ppa:linuxuprising/shutter
-sudo add-apt-repository -y 'deb https://deb.opera.com/opera-stable/ stable non-free'
 wget -qO- https://deb.opera.com/archive.key | sudo apt-key add -
+sudo add-apt-repository -y "deb [arch=i386,amd64] https://deb.opera.com/opera-stable/ stable non-free"
 curl -sS https://download.spotify.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
 
 sudo apt-get update
 sudo apt-get upgrade
-sudo apt-get install -y sublime-text code git virtualbox-6.0 vlc gimp gimp-plugin-registry gimp-gmic peek shutter gnome-web-photo opera-stable netbeans
-sudo apt-get install  filezilla gparted spotify-client arduino filelight slack meld fortunes cowsay
+sudo apt-get install -y sublime-text code git virtualbox-6.0 vlc gimp gimp-gmic peek shutter opera-stable
+sudo apt-get install  filezilla gparted spotify-client arduino filelight meld fortunes cowsay
 
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
+curl -o- http://espejito.fder.edu.uy/apache/netbeans/netbeans/11.1/Apache-NetBeans-11.1-bin-linux-x64.sh | bash
 
 wget -O telegram.tar.xz https://telegram.org/dl/desktop/linux
 tar xvxf telegram.tar.xz
@@ -58,8 +59,10 @@ installdeb chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_cu
 installdeb steam.deb https://steamcdn-a.akamaihd.net/client/installer/steam.deb
 installdeb libgoocanvas-common.deb https://launchpad.net/ubuntu/+archive/primary/+files/libgoocanvas-common_1.0.0-1_all.deb
 installdeb libgoocanvas3.deb https://launchpad.net/ubuntu/+archive/primary/+files/libgoocanvas3_1.0.0-1_amd64.deb
-installdeb libgoocanvas-perl.deb https://launchpad.net/ubuntu/+archive/primary/+files/libgoo-canvas-perl_0.06-2ubuntu3_amd64.deb
+installdeb libgoocanvas-perl.deb https://launchpad.net/ubuntu/+archive/primary/+files/libgoo-canvas-perl_0.06-2ubuntu3_amd64.deb; sudo apt-get -f install
 installdeb skype.deb https://go.skype.com/skypeforlinux-64.deb
+installdeb gnome-web-photo.deb http://mirrors.kernel.org/ubuntu/pool/universe/g/gnome-web-photo/gnome-web-photo_0.10.6-1_amd64.deb
+installdeb slack.deb https://downloads.slack-edge.com/linux_releases/slack-desktop-4.0.1-amd64.deb
 cd $OLDPWD
 
 sudo apt-get autoremove -y
