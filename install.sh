@@ -38,7 +38,9 @@ curl -sS https://download.spotify.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
 
 sudo apt-get update
-sudo apt-get install -y sublime-text code git virtualbox-6.0 vlc gimp gimp-plugin-registry gimp-gmic peek shutter gnome-web-photo opera-stable netbeans filezilla gparted spotify-client arduino filelight slack meld fortunes cowsay
+sudo apt-get upgrade
+sudo apt-get install -y sublime-text code git virtualbox-6.0 vlc gimp gimp-plugin-registry gimp-gmic peek shutter gnome-web-photo opera-stable netbeans
+sudo apt-get install  filezilla gparted spotify-client arduino filelight slack meld fortunes cowsay
 
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
 
@@ -59,6 +61,8 @@ installdeb libgoocanvas3.deb https://launchpad.net/ubuntu/+archive/primary/+file
 installdeb libgoocanvas-perl.deb https://launchpad.net/ubuntu/+archive/primary/+files/libgoo-canvas-perl_0.06-2ubuntu3_amd64.deb
 installdeb skype.deb https://go.skype.com/skypeforlinux-64.deb
 cd $OLDPWD
+
+sudo apt-get autoremove -y
 
 cp assets/Preferences.sublime-settings ~/.config/sublime-text-3/Packages/User/
 git config --global alias.lg 'log --format="%C(auto)%h %Cgreen%s %Creset(%cN, %cr) %C(auto)%d" -10'
