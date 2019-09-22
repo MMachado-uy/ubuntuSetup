@@ -56,6 +56,10 @@ sudo sh -c 'echo "deb [arch=amd64 signed-by=/usr/share/keyrings/packages.microso
 printInstallHeader 'Git [Repos]'
 sudo add-apt-repository -y ppa:git-core/ppa
 
+printInstallHeader 'Virtualbox [Repos]'
+echo "deb https://download.virtualbox.org/virtualbox/debian bionic contrib" | sudo tee /etc/apt/sources.list
+wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
+
 printInstallHeader 'Gimp [Repos]'
 sudo add-apt-repository -y ppa:otto-kesselgulasch/gimp
 
@@ -78,7 +82,7 @@ sudo apt-get update
 sudo apt-get upgrade
 
 printInstallHeader 'A bunch of stuff'
-sudo apt-get install -y sublime-text code git vlc gimp gimp-gmic peek shutter opera-stable
+sudo apt-get install -y sublime-text code virtualbox-6.0 git vlc gimp gimp-gmic peek shutter opera-stable
 sudo apt-get install  filezilla gparted spotify-client filelight meld fortunes cowsay
 
 printInstallHeader 'NVM'
