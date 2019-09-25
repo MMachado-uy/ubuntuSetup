@@ -2,17 +2,17 @@
 
 function printInstallHeader()
 {
-    echo "*\n*\n*\n*\n";
-    echo "Installing $1..."
-    echo "*\n*\n*\n*\n";
+    printf "*\n*\n*\n*\n";
+    echo -e "Installing $1..."
+    printf "*\n*\n*\n*\n";
     sleep 1;
 }
 
 function printheader()
 {
-    echo "*\n*\n*\n*\n";
-    echo "$1..."
-    echo "*\n*\n*\n*\n";
+    printf "*\n*\n*\n*\n";
+    echo -e "$1..."
+    printf "*\n*\n*\n*\n";
     sleep 1;
 
 }
@@ -56,9 +56,9 @@ sudo sh -c 'echo "deb [arch=amd64 signed-by=/usr/share/keyrings/packages.microso
 printInstallHeader 'Git [Repos]'
 sudo add-apt-repository -y ppa:git-core/ppa
 
-printInstallHeader 'Virtualbox [Repos]'
-echo "deb https://download.virtualbox.org/virtualbox/debian bionic contrib" | sudo tee /etc/apt/sources.list
-wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
+# printInstallHeader 'Virtualbox [Repos]'
+# echo "deb https://download.virtualbox.org/virtualbox/debian bionic contrib" | sudo tee /etc/apt/sources.list
+# wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
 
 printInstallHeader 'Gimp [Repos]'
 sudo add-apt-repository -y ppa:otto-kesselgulasch/gimp
@@ -82,13 +82,19 @@ sudo apt-get update
 sudo apt-get upgrade
 
 printInstallHeader 'A bunch of stuff'
-sudo apt-get install -y sublime-text code virtualbox-6.0 git vlc gimp gimp-gmic peek shutter opera-stable
+sudo apt-get install -y sublime-text code git gimp gimp-gmic peek shutter opera-stable
 sudo apt-get install  filezilla gparted spotify-client filelight meld fortunes cowsay
+
+printInstallHeader 'VLC (via Snap)'
+# snap install vlc
+
+# printInstallHeader 'Virtualbox'
+# sudo apt-get install virtualbox-6.0
 
 printInstallHeader 'NVM'
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
 
-printInstallHeader('NetBeans');
+printInstallHeader 'NetBeans'
 curl -o- http://espejito.fder.edu.uy/apache/netbeans/netbeans/11.1/Apache-NetBeans-11.1-bin-linux-x64.sh | bash
 
 printInstallHeader 'Telegram (Binaries and .desktop)'
